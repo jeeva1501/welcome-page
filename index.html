@@ -3,20 +3,27 @@
 <head>
     <title>Button Actions</title>
     <style>
-        /* CSS for the heart images */
-        .heart {
-            width: 30px;
-            height: 30px;
-            display: inline-block;
-            animation: heartBeat 1s infinite;
+        /* CSS for the heart-shaped border and blinking animation */
+        #displayContainer {
+            text-align: center;
+            padding: 20px;
+            animation: heartbeat 2s infinite;
         }
 
-        @keyframes heartBeat {
+        .quote-container {
+            display: inline-block;
+            position: relative;
+            padding: 10px;
+            border: 3px solid transparent;
+            border-image-source: url("heart.png"); /* Replace with your heart image URL */
+            border-image-slice: 12;
+            border-image-repeat: round;
+            font-size: 20px;
+        }
+
+        @keyframes heartbeat {
             0% { transform: scale(1); }
-            20% { transform: scale(1.1); }
-            40% { transform: scale(1); }
-            60% { transform: scale(1.1); }
-            80% { transform: scale(1); }
+            50% { transform: scale(1.1); }
             100% { transform: scale(1); }
         }
     </style>
@@ -30,30 +37,14 @@
     <button id="yellowButton">Yellow</button>
     <button id="blueButton">Blue</button>
 
-    <!-- Create a container to display quotes, numbers, and images -->
+    <!-- Create a container to display quotes -->
     <div id="displayContainer"></div>
 
     <script>
-        // Get button elements
-        const redButton = document.getElementById("redButton");
-        const greenButton = document.getElementById("greenButton");
-        const yellowButton = document.getElementById("yellowButton");
-        const blueButton = document.getElementById("blueButton");
+        // Get button elements (same as before)
+        // ...
 
-        // Get the display container element
-        const displayContainer = document.getElementById("displayContainer");
-
-        // Function to create a colorful heart image
-        function createHeartImage(color) {
-            const heart = document.createElement("img");
-            heart.src = "heart.png"; // You can replace "heart.png" with your heart image URL
-            heart.alt = "Heart";
-            heart.className = "heart";
-            heart.style.filter = `hue-rotate(${color}deg)`;
-            return heart;
-        }
-
-        // Event listener for the Red button
+        // Event listener for the Red button (updated for heart-shaped border)
         redButton.addEventListener("click", () => {
             // Generate a random loving quote
             const lovingQuotes = [
@@ -66,16 +57,7 @@
             const randomQuote = lovingQuotes[Math.floor(Math.random() * lovingQuotes.length)];
 
             // Clear the container and display the quote with colorful hearts
-            displayContainer.innerHTML = "";
-            const hearts = [];
-            for (let i = 0; i < randomQuote.length; i++) {
-                const randomColor = Math.floor(Math.random() * 360); // Generate a random hue value
-                const heart = createHeartImage(randomColor);
-                displayContainer.appendChild(heart);
-                hearts.push(heart);
-            }
-            displayContainer.appendChild(document.createElement("br"));
-            displayContainer.textContent = randomQuote;
+            displayContainer.innerHTML = `<div class="quote-container">${randomQuote}</div>`;
         });
 
         // Event listener for the Green button (same as before)
