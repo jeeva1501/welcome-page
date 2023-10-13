@@ -1,9 +1,75 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Welcome to our Site</title>
+    <title>Button Actions</title>
 </head>
 <body>
-    <h1>JEEVAGAN 9787076765</h1>
+    <h1>Button Actions</h1>
+
+    <!-- Create buttons -->
+    <button id="redButton">Red</button>
+    <button id="greenButton">Green</button>
+    <button id="yellowButton">Yellow</button>
+    <button id="blueButton">Blue</button>
+
+    <!-- Create a container to display quotes, numbers, and images -->
+    <div id="displayContainer"></div>
+
+    <script>
+        // Get button elements
+        const redButton = document.getElementById("redButton");
+        const greenButton = document.getElementById("greenButton");
+        const yellowButton = document.getElementById("yellowButton");
+        const blueButton = document.getElementById("blueButton");
+
+        // Get the display container element
+        const displayContainer = document.getElementById("displayContainer");
+
+        // Event listener for the Red button
+        redButton.addEventListener("click", () => {
+            // Generate a random loving quote
+            const lovingQuotes = [
+                "Love is the answer.",
+                "Where there is love, there is life.",
+                "Love is all you need.",
+                "The best thing to hold onto in life is each other."
+            ];
+
+            const randomQuote = lovingQuotes[Math.floor(Math.random() * lovingQuotes.length)];
+
+            // Display the quote in the container
+            displayContainer.textContent = randomQuote;
+        });
+
+        // Event listener for the Green button
+        greenButton.addEventListener("click", () => {
+            // Generate a random number
+            const randomNumber = Math.floor(Math.random() * 100);
+
+            // Display the number in the container
+            displayContainer.textContent = `Random Number: ${randomNumber}`;
+        });
+
+        // Event listener for the Yellow button
+        yellowButton.addEventListener("click", () => {
+            // Generate a random image URL
+            const randomImageURL = "https://source.unsplash.com/random";
+
+            // Create an image element
+            const imageElement = document.createElement("img");
+            imageElement.src = randomImageURL;
+
+            // Clear the container and append the image
+            displayContainer.innerHTML = "";
+            displayContainer.appendChild(imageElement);
+        });
+
+        // Event listener for the Blue button (You can add your own action for the Blue button)
+
+        blueButton.addEventListener("click", () => {
+            // Add your action here
+            displayContainer.textContent = "Blue Button Clicked!";
+        });
+    </script>
 </body>
 </html>
